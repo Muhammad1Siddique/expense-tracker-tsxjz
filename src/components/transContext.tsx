@@ -5,10 +5,7 @@ type transObject = {
     amount: number,
     desc: string
 }
-enum ActionType{
-    add_transaction = "add_transaction",
-    delete_transaction = "delete_transaction",
-  }
+
 
 type stateType={
     transactions:transObject[],
@@ -35,7 +32,7 @@ export const TransactionContext = createContext(initialState);
 export const TransactionProvider = ({children}:{children:any})=>{
     let  [state, dispatch] = useReducer(TransactionReducer, initialTransactions)
 
-    function addTransaction(Actions:ActionType,transObj:transObject){
+    function addTransaction(transObj:transObject){
         dispatch({
             type: "add_transaction",
             payload:{
