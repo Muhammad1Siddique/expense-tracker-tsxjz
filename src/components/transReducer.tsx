@@ -3,12 +3,12 @@
     amount: number,
     desc: string
   }
-  enum ActionType{
-    add_transaction = "add_transaction",
-    delete_transaction = "delete_transaction",
-  }
-  type ActionResult ={
-    type: ActionType,
+  //  enum ActionType{
+  //   add_transaction = "add_transaction",
+  //   delete_transaction = "delete_transaction",
+  // }
+  export type ActionResult ={
+    type: "add_transaction" | "delete_transaction",
     payload: transObject,
     ActionId: number
   }
@@ -17,10 +17,10 @@
   export  const TransactionReducer = ((state:transObject[], action:ActionResult) => {
 
   switch(action.type){
-      case ActionType.add_transaction:{
+      case "add_transaction":{
           return [action.payload, ...state];
       }
-      case ActionType.delete_transaction:{
+      case "delete_transaction":{
         let value = state[action.ActionId];
         return state.filter(item => item !== value)
       }
